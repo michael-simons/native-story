@@ -1,0 +1,23 @@
+target/
+.DS_Store
+var/
+/application.properties
+/activemq-data/
+/nbproject/
+Thumbs.db
+reports/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+
+ac.simons.native_story.trivial.application
+application
+trivial/src/main/java/ac/simons/native_story/trivial/Application.class
+only-on-jvm-1.0*
+reflection-config-1.0*
+substitution-1.0*
+app

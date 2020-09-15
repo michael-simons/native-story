@@ -1,0 +1,10 @@
+[
+  {
+    "name" : "ac.simons.native_story.ServiceImpl",
+    "allPublicConstructors" : true
+  },
+  {
+    "name" : "ac.simons.native_story.Service",
+    "allPublicMethods" : true
+  }
+]

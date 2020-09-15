@@ -1,0 +1,42 @@
+= On the progress towards native capable frameworks
+Michael Simons <michael.simons@neo4j.com>
+:doctype: article
+:lang: en
+:listing-caption: Listing
+:source-highlighter: coderay
+:icons: font
+:sectlink: true
+:sectanchors: true
+:numbered: true
+:xrefstyle: short
+
+[abstract]
+--
+Quoted from the https://www.graalvm.org/why-graalvm/[GraalVM website],
+"GraalVM is a high-performance runtime that provides significant improvements in application performance and efficiency which is ideal for microservices. It is designed for applications written in Java, JavaScript, LLVM-based languages."
+
+One benefit of the GraalVM is a new just-in-time compilation mechanism, which makes many scenarios running on GraalVM faster than running on a comparable JDK.
+
+However, there is more: "For existing Java applications, GraalVM can provide benefits by […] creating ahead-of-time compiled native images."
+
+This article presents some things learned from a frameworks author about what is necessary to make a non trivial framework component work as a native image.
+--
+
+Some time ago I sent out this https://twitter.com/rotnroll666/status/1304364255668563969[tweet here]:
+
+> I wonder if the speed or elasticity gain by GraalVM native applications can make up for all the work put into frameworks to make them run on Substrate.
+
+This tweet caused quite some reaction and with the following piece I want to clarify my train of thoughts behind it.
+First of all, what is "Substrate"?
+The SubstrateVM is the part of GraalVM that is responsible for running the native image:
+
+[quote, https://github.com/oracle/graal/tree/master/substratevm]
+____
+(A native image) does not run on the Java VM, but includes necessary components like memory management and thread scheduling from a different virtual machine, called "Substrate VM". Substrate VM is the name for the runtime components (like the deoptimizer, garbage collector, thread scheduling etc.). The resulting program has faster startup time and lower runtime memory overhead compared to a Java VM.
+____
+
+The GraalVM team has a couple of https://www.graalvm.org/why-graalvm/#for-microservices-frameworks[benchmarks] showing the benefits from running microservices as native images.
+Those numbers are impressing, no doubt, and they will have a positive effect for many applications.
+
+I wrote my sentiment not as an author of applications
+but as an author and contributor of database drivers supporting encrypted connections to servers,
